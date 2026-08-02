@@ -1,0 +1,3 @@
+yt-dlp>=2025.12.8
+modelscope>=1.38.1
+qwen-asr==0.0.6

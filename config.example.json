@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "timezone": "Asia/Shanghai",
+  "reportTime": "00:30",
+  "statePath": "./data/state.json",
+  "logDir": "./data/logs",
+  "outputDir": "./output/reports",
+  "browser": {
+    "storageStatePath": "./data/browser_state.json",
+    "sessionDir": "./data/sessions",
+    "headless": true,
+    "executablePath": "",
+    "navigationTimeoutMs": 45000,
+    "settleMs": 5000,
+    "scrollRounds": 2,
+    "maxItemsPerSource": 30
+  },
+  "summarization": {
+    "provider": "none",
+    "endpoint": "http://127.0.0.1:11434",
+    "model": "qwen3:8b",
+    "timeoutMs": 120000
+  },
+  "video": {
+    "statePath": "./data/video_ingest_state.json",
+    "workDir": "./data/video_work",
+    "modelDir": "./data/video_models",
+    "qwenModelDir": "./data/video_models/Qwen3-ASR-0.6B",
+    "modelId": "qwen3-asr-0.6b",
+    "transcriptDir": "./output/transcripts",
+    "pythonPath": "./data/video_venv/Scripts/python.exe",
+    "workerPath": "./scripts/video_worker.py",
+    "device": "cuda",
+    "excerptChars": 1800,
+    "maxVideosPerSource": 5,
+    "maxDiscoveryItems": 20,
+    "maxDurationMinutes": 120
+  },
+  "email": {
+    "enabled": false,
+    "host": "smtp.qq.com",
+    "port": 465,
+    "secure": true,
+    "username": "your-account@qq.com",
+    "passwordEnv": "DAILY_DIGEST_SMTP_PASSWORD",
+    "passwordFile": "./data/email_auth_code.dpapi",
+    "from": "每日信息日报 <your-account@qq.com>",
+    "to": ["recipient@example.com"],
+    "retries": 2,
+    "timeoutMs": 30000
+  },
+  "sources": [
+    {
+      "id": "x_vida_bwe",
+      "platform": "x",
+      "displayName": "Vida",
+      "url": "https://x.com/Vida_BWE",
+      "enabled": true,
+      "includeReplies": false,
+      "includeReposts": false
+    },
+    {
+      "id": "x_fupenglondon",
+      "platform": "x",
+      "displayName": "付鹏",
+      "url": "https://x.com/fupenglondon",
+      "enabled": true,
+      "includeReplies": false,
+      "includeReposts": false
+    },
+    {
+      "id": "weibo_1769173661",
+      "platform": "weibo",
+      "displayName": "付鹏的财经世界",
+      "url": "https://weibo.com/u/1769173661",
+      "enabled": true,
+      "includeReposts": false
+    },
+    {
+      "id": "weibo_5392496282",
+      "platform": "weibo",
+      "displayName": "金融炼药师",
+      "url": "https://weibo.com/u/5392496282",
+      "enabled": true,
+      "includeReposts": false
+    },
+    {
+      "id": "weibo_5647310207",
+      "platform": "weibo",
+      "displayName": "浪猪灰头林登万",
+      "url": "https://weibo.com/u/5647310207",
+      "enabled": true,
+      "includeReposts": false
+    },
+    {
+      "id": "wechat_fupeng_finance",
+      "platform": "wechat",
+      "displayName": "付鹏的财经世界",
+      "feedUrl": "http://127.0.0.1:4000/feeds/all.json",
+      "accountName": "付鹏的财经世界",
+      "enabled": true,
+      "forceUpdate": false,
+      "timeoutMs": 30000
+    },
+    {
+      "id": "xiaoyuzhou_fupeng_finance",
+      "platform": "xiaoyuzhou",
+      "displayName": "付鹏的财经世界（小宇宙）",
+      "url": "https://www.xiaoyuzhoufm.com/podcast/65e9019eeaa905ff7c66fc08",
+      "pid": "65e9019eeaa905ff7c66fc08",
+      "enabled": true,
+      "contentMode": "shownotes",
+      "transcribeFallback": false,
+      "timeoutMs": 30000
+    },
+    {
+      "id": "youtube_dan_koe",
+      "platform": "youtube",
+      "displayName": "Dan Koe",
+      "url": "https://www.youtube.com/@dankoetalks",
+      "channelId": "UCWXYDYv5STLk-zoxMP2I1Lw",
+      "feedUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCWXYDYv5STLk-zoxMP2I1Lw",
+      "enabled": true,
+      "language": "en",
+      "subtitleLanguages": ["en", "en-orig"],
+      "minDurationSeconds": 60
+    },
+    {
+      "id": "bilibili_zhangxia_sean",
+      "platform": "bilibili",
+      "displayName": "章夏Sean",
+      "url": "https://space.bilibili.com/1051456456/video",
+      "uid": "1051456456",
+      "enabled": true,
+      "language": "zh",
+      "subtitleLanguages": ["zh-Hans", "zh-CN", "zh"],
+      "minDurationSeconds": 60
+    },
+    {
+      "id": "bilibili_lanbai_argentina",
+      "platform": "bilibili",
+      "displayName": "蓝白argentina",
+      "url": "https://space.bilibili.com/432597324/video",
+      "uid": "432597324",
+      "enabled": true,
+      "language": "zh",
+      "subtitleLanguages": ["zh-Hans", "zh-CN", "zh"],
+      "minDurationSeconds": 60
+    },
+    {
+      "id": "bilibili_class_monitor",
+      "platform": "bilibili",
+      "displayName": "课代表立正",
+      "url": "https://space.bilibili.com/491306902/video",
+      "uid": "491306902",
+      "enabled": true,
+      "language": "zh",
+      "subtitleLanguages": ["zh-Hans", "zh-CN", "zh"],
+      "minDurationSeconds": 60
+    },
+    {
+      "id": "bilibili_coolwin",
+      "platform": "bilibili",
+      "displayName": "酷温Coolwin",
+      "url": "https://space.bilibili.com/478301389/video",
+      "uid": "478301389",
+      "enabled": true,
+      "language": "zh",
+      "subtitleLanguages": ["zh-Hans", "zh-CN", "zh"],
+      "minDurationSeconds": 60
+    },
+    {
+      "id": "bilibili_cls",
+      "platform": "bilibili",
+      "displayName": "CLS同学",
+      "url": "https://space.bilibili.com/1575688490/video",
+      "uid": "1575688490",
+      "enabled": true,
+      "language": "zh",
+      "subtitleLanguages": ["zh-Hans", "zh-CN", "zh"],
+      "minDurationSeconds": 60
+    }
+  ]
+}

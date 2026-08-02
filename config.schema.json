@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:daily-information-digest:config:v1",
+  "title": "Daily Information Digest configuration",
+  "type": "object",
+  "required": ["version", "timezone", "reportTime", "sources"],
+  "properties": {
+    "version": { "const": 1 },
+    "timezone": { "type": "string", "minLength": 1 },
+    "reportTime": { "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+    "statePath": { "type": "string" },
+    "logDir": { "type": "string" },
+    "outputDir": { "type": "string" },
+    "browser": { "$ref": "#/$defs/browser" },
+    "summarization": { "type": "object" },
+    "video": { "$ref": "#/$defs/video" },
+    "email": { "$ref": "#/$defs/email" },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "browser": { "type": "object", "properties": { "storageStatePath": { "type": "string" }, "sessionDir": { "type": "string" }, "headless": { "type": "boolean" }, "executablePath": { "type": "string" }, "navigationTimeoutMs": { "type": "integer", "minimum": 1000 } }, "additionalProperties": true },
+    "video": { "type": "object", "properties": { "modelId": { "type": "string" }, "modelDir": { "type": "string" }, "qwenModelDir": { "type": "string" }, "device": { "enum": ["cuda", "cpu", "auto"] } }, "additionalProperties": true },
+    "email": { "type": "object", "properties": { "enabled": { "type": "boolean" }, "host": { "type": "string" }, "port": { "type": "integer", "minimum": 1, "maximum": 65535 }, "secure": { "type": "boolean" }, "username": { "type": "string" }, "passwordEnv": { "type": "string" }, "passwordFile": { "type": "string" }, "from": { "type": "string" }, "to": { "type": "array", "items": { "type": "string", "format": "email" } } }, "additionalProperties": true },
+    "source": {
+      "type": "object",
+      "required": ["id", "platform", "displayName"],
+      "properties": { "id": { "type": "string", "pattern": "^[a-z0-9_]+$" }, "platform": { "enum": ["x", "weibo", "wechat", "youtube", "bilibili", "xiaoyuzhou"] }, "displayName": { "type": "string", "minLength": 1 }, "enabled": { "type": "boolean" } },
+      "allOf": [
+        { "if": { "properties": { "platform": { "const": "x" } } }, "then": { "required": ["url"] } },
+        { "if": { "properties": { "platform": { "const": "weibo" } } }, "then": { "required": ["url"] } },
+        { "if": { "properties": { "platform": { "const": "wechat" } } }, "then": { "required": ["feedUrl"] } },
+        { "if": { "properties": { "platform": { "const": "youtube" } } }, "then": { "required": ["url", "channelId", "feedUrl"] } },
+        { "if": { "properties": { "platform": { "const": "bilibili" } } }, "then": { "required": ["url", "uid"] } },
+        { "if": { "properties": { "platform": { "const": "xiaoyuzhou" } } }, "then": { "required": ["url", "pid"] } }
+      ],
+      "additionalProperties": true
+    }
+  }
+}

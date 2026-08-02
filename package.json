@@ -1,0 +1,29 @@
+{
+  "name": "daily-information-digest",
+  "version": "0.2.0",
+  "private": false,
+  "type": "module",
+  "description": "Zero-API-cost daily digest for selected social and video creators.",
+  "bin": { "digest": "./src/cli.js" },
+  "scripts": {
+    "once": "node src/cli.js once --config config.json",
+    "daily": "node src/cli.js once --config config.json --previous-day",
+    "backfill": "node src/cli.js once --config config.json --date",
+    "video:ingest": "node src/cli.js video-ingest --config config.json",
+    "video:latest": "node src/cli.js video-ingest --config config.json --latest",
+    "login": "node src/cli.js login --config config.json",
+    "email:test": "node src/cli.js email-test --config config.json",
+    "validate": "node src/cli.js validate --config config.json",
+    "web": "node src/cli.js serve --config config.json",
+    "models": "node src/cli.js models --config config.json",
+    "test": "node tests/run-tests.js && node tests/weibo-safety-tests.js && node tests/video-tests.js && node tests/xiaoyuzhou-tests.js && node tests/control-plane-tests.js && python tests/video-worker-tests.py"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.2.5",
+    "nodemailer": "^7.0.0",
+    "playwright-core": "^1.54.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

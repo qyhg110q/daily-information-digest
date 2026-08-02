@@ -1,0 +1,9 @@
+node_modules/
+data/
+*.log
+__pycache__/
+config.json
+config.json.bak
+output/
+.playwright-cli/
+.env
