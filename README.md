@@ -9,7 +9,7 @@ Web 控制台、CLI、`config.json` 和 AI 直接编辑共用同一套配置与�
 ## 功能
 
 - 管理六个平台的关注对象，支持按博主搜索和按平台筛选。
-- X、微博分平台登录；Bilibili 公开视频匿名处理，会员内容可选登录。
+- X、微博各自使用专用持久浏览器资料，平台续签的 Cookie 会随日常采集自动保存；Bilibili 公开视频匿名处理，会员内容可选登录。
 - 本地下载、检测和切换 Qwen3-ASR 转录模型。
 - 视频完成后立即生成统一日报，部分失败也会发送说明邮件。
 - Windows 定时执行与错过时间后的开机补跑。
@@ -102,13 +102,13 @@ Unregister-ScheduledTask -TaskName "DailyInformationDigest" -Confirm:$false
 
 ### 平台登录
 
-- X、微博：在“平台账号”打开登录窗口，登录完成后保存并主动检测。
+- X、微博：在“平台账号”分别打开真实 Chrome 专用窗口并登录一次。登录完成后先关闭该窗口，再回到页面检测登录。登录阶段不由 Playwright 控制，可正常完成 Google 等安全登录；之后检测和每日采集复用 `data/browser_profiles/<platform>/`。平台主动注销时仍需重新登录。
 - Bilibili：公开内容无需登录；如需访问账号有权限观看的会员、付费或受限内容，请完成可选登录。
 - YouTube：使用频道 RSS，无需登录。
 - 小宇宙：读取公开 Show Notes，无需登录。
 - 微信公众号：检测的是 WeWe RSS 服务状态。
 
-浏览器会话保存在 `data/sessions/`，其中含 Cookie，禁止提交或分享。项目不会绕过验证码、会员权限或平台访问限制。
+X、微博的完整浏览器资料保存在 `data/browser_profiles/`，Bilibili 可选 Cookie 保存在 `data/sessions/`。这些目录都含敏感登录凭据，禁止提交或分享。项目不会匿名兜底采集 X、微博，也不会绕过验证码、会员权限或平台访问限制。
 
 ### 邮件
 

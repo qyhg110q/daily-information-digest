@@ -8,6 +8,7 @@
   "browser": {
     "storageStatePath": "./data/browser_state.json",
     "sessionDir": "./data/sessions",
+    "profileDir": "./data/browser_profiles",
     "headless": true,
     "executablePath": "",
     "navigationTimeoutMs": 45000,

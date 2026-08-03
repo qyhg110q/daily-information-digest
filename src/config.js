@@ -14,6 +14,7 @@ export const DEFAULTS = {
   browser: {
     storageStatePath: "./data/browser_state.json",
     sessionDir: "./data/sessions",
+    profileDir: "./data/browser_profiles",
     headless: true,
     executablePath: "",
     navigationTimeoutMs: 45000,
@@ -73,6 +74,7 @@ export async function loadConfig(configPath) {
   config.outputDir = path.resolve(configDir, config.outputDir);
   config.browser.storageStatePath = path.resolve(configDir, config.browser.storageStatePath);
   config.browser.sessionDir = path.resolve(configDir, config.browser.sessionDir);
+  config.browser.profileDir = path.resolve(configDir, config.browser.profileDir);
   config.email.passwordFile = path.resolve(configDir, config.email.passwordFile);
   for (const key of ["statePath", "workDir", "modelDir", "qwenModelDir", "transcriptDir", "pythonPath", "workerPath"]) {
     config.video[key] = path.resolve(configDir, config.video[key]);

@@ -5,7 +5,8 @@
 ## Sensitive local files
 
 - `config.json`：可能包含关注列表和邮箱地址。
-- `data/sessions/*.json`：浏览器 Cookie 与登录状态，等同敏感凭据。
+- `data/browser_profiles/`：X、微博的完整持久浏览器资料，包含 Cookie、Local Storage、IndexedDB 等，等同敏感凭据。
+- `data/sessions/*.json`：Bilibili 等兼容流程使用的 Cookie 与登录状态，同样属于敏感凭据。
 - `data/email_auth_code.dpapi`：Windows 当前用户可解密的 SMTP 授权码密文。
 - `data/video_models/`、转录和日报：可能体积很大或包含私人研究内容。
 

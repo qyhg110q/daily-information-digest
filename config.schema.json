@@ -19,7 +19,7 @@
   },
   "additionalProperties": true,
   "$defs": {
-    "browser": { "type": "object", "properties": { "storageStatePath": { "type": "string" }, "sessionDir": { "type": "string" }, "headless": { "type": "boolean" }, "executablePath": { "type": "string" }, "navigationTimeoutMs": { "type": "integer", "minimum": 1000 } }, "additionalProperties": true },
+    "browser": { "type": "object", "properties": { "storageStatePath": { "type": "string" }, "sessionDir": { "type": "string" }, "profileDir": { "type": "string" }, "headless": { "type": "boolean" }, "executablePath": { "type": "string" }, "navigationTimeoutMs": { "type": "integer", "minimum": 1000 } }, "additionalProperties": true },
     "video": { "type": "object", "properties": { "modelId": { "type": "string" }, "modelDir": { "type": "string" }, "qwenModelDir": { "type": "string" }, "device": { "enum": ["cuda", "cpu", "auto"] } }, "additionalProperties": true },
     "email": { "type": "object", "properties": { "enabled": { "type": "boolean" }, "host": { "type": "string" }, "port": { "type": "integer", "minimum": 1, "maximum": 65535 }, "secure": { "type": "boolean" }, "username": { "type": "string" }, "passwordEnv": { "type": "string" }, "passwordFile": { "type": "string" }, "from": { "type": "string" }, "to": { "type": "array", "items": { "type": "string", "format": "email" } } }, "additionalProperties": true },
     "source": {

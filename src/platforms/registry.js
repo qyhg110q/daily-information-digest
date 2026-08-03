@@ -1,6 +1,6 @@
 const platforms = [
-  descriptor("x", "X / Twitter", { login: true, browser: true }, [field("url", "主页 URL", "url", true), field("includeReplies", "包含回复", "boolean"), field("includeReposts", "包含转发", "boolean")]),
-  descriptor("weibo", "微博", { login: true, browser: true }, [field("url", "主页 URL", "url", true), field("includeReposts", "包含转发", "boolean")]),
+  descriptor("x", "X / Twitter", { login: true, persistentLogin: true, browser: true }, [field("url", "主页 URL", "url", true), field("includeReplies", "包含回复", "boolean"), field("includeReposts", "包含转发", "boolean")]),
+  descriptor("weibo", "微博", { login: true, persistentLogin: true, browser: true }, [field("url", "主页 URL", "url", true), field("includeReposts", "包含转发", "boolean")]),
   descriptor("wechat", "微信公众号", { service: "WeWe RSS" }, [field("feedUrl", "Feed URL", "url", true), field("accountName", "公众号名称", "text")]),
   descriptor("youtube", "YouTube", { video: true, subtitles: true }, [field("url", "频道主页", "url", true), field("channelId", "Channel ID", "text", true), field("feedUrl", "RSS URL", "url", true), field("language", "语言", "text")]),
   descriptor("bilibili", "哔哩哔哩", { loginOptional: true, browser: true, video: true, subtitles: true }, [field("url", "空间主页", "url", true), field("uid", "UID", "text", true), field("language", "语言", "text")]),
@@ -60,7 +60,7 @@ function safeId(value) { return String(value).normalize("NFKD").toLowerCase().re
 function decodeHtml(value) { return String(value).replaceAll("&amp;", "&").replaceAll("&quot;", '"').replaceAll("&#39;", "'"); }
 
 function descriptor(id, displayName, capabilities, fields) {
-  return { id, displayName, capabilities: { login: false, loginOptional: false, browser: false, video: false, subtitles: false, showNotes: false, ...capabilities }, fields };
+  return { id, displayName, capabilities: { login: false, loginOptional: false, persistentLogin: false, browser: false, video: false, subtitles: false, showNotes: false, ...capabilities }, fields };
 }
 
 function field(name, label, type, required = false) {

@@ -9,7 +9,7 @@ The web console, CLI, `config.json`, and AI-assisted editing share the same sche
 ## Features
 
 - Manage creators across six platforms, with creator search and platform filtering.
-- Platform-scoped login for X and Weibo; anonymous public Bilibili access with optional login for member content.
+- Dedicated persistent browser profiles for X and Weibo, preserving platform-renewed cookies across daily runs; anonymous public Bilibili access with optional login for member content.
 - Download, inspect, and switch local Qwen3-ASR transcription models.
 - Run video ingestion first, then immediately build one digest; partial failures are still reported by email.
 - Windows scheduling with catch-up execution after a missed run time.
@@ -102,13 +102,13 @@ The example config includes the public creators used by this project and demonst
 
 ### Platform sessions
 
-- X and Weibo: open the login window under Platform Accounts, then save and verify the session.
+- X and Weibo: open each dedicated real Chrome window once. Sign in, close that window, and then return to the UI to verify the login. The login stage is not Playwright-controlled, so security-sensitive flows such as Google sign-in can use a normal supported browser. Verification and daily collection reuse `data/browser_profiles/<platform>/`. A platform-side revocation still requires signing in again.
 - Bilibili: public content works anonymously. Log in only for member, paid, or restricted content your account is entitled to access.
 - YouTube: channel RSS; no login required.
 - Xiaoyuzhou: public show notes; no login required.
 - WeChat Official Accounts: the health check targets the configured WeWe RSS service.
 
-Browser sessions are stored under `data/sessions/` and contain cookies. Never commit or share them. This project does not bypass CAPTCHA, membership, payment, or platform access controls.
+Complete X and Weibo browser profiles live under `data/browser_profiles/`; optional Bilibili cookies live under `data/sessions/`. Both contain sensitive credentials and must never be committed or shared. The project does not anonymously fall back for X or Weibo and does not bypass CAPTCHA, membership, payment, or platform access controls.
 
 ### Email delivery
 
